@@ -10,9 +10,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!-- css 파일 불러오기 -->
+    <link rel="stylesheet" type="text/css" href="shopmain.css">
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -23,53 +28,74 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="shopmain.css">
-    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
     <script>
-        function orderCheck(){
-             let username = $('#username').val();
-            
-            //  if(username==''){
-            //     username.focus(function(){ username;}
+        function order() {
+            let orderName = $('#orderName');
+            let orderCount = $('#orderCount');
+            let orderAddress = $('#orderAddress');
+            let orderNumber = $('#orderNumber');
 
-            // }else if{
-            // };
-            
+            if (orderName.val() == '') {
+                alert('성함을 입력해 주세요');
+                orderName.focus();
+            }else if (orderCount.val() == 0) {
+                alert('수량을 선택해 주세요');
+                orderCount.focus();
+            } else if (orderAddress.val() == '') {
+                alert('주소를 입력해 주세요');
+                orderAddress.focus();
+            } else if (!isMobileNumber(orderNumber.val())) {
+                alert('휴대폰번호를 입력해 주세요');
+                orderNumber.val() = '';
+                orderNumber.focus();
+            } else{
+                alert('주문완료!');
+                location.reload(true);
+            }
 
+        }
+
+        function isMobileNumber(orderNumber)
+        {
+            let regPhone =  /(01[016789])[-]([1-9]{1}[0-9]{2,3})[-]([0-9]{4})$/;
+            if(!regPhone.test(orderNumber)) {
+                return false;
+            }else {
+                return true;
+            }
+          
         }
 
     </script>
 
 
-</head>
+
 
 <body>
     <div class="wrap">
-        <img class="shop01" src="https://img.hago.kr/data/goods/19/05/21/1000030385/1000030385_detail_081.jpg">
-
         <div class="order-form">
-            <div class="jumbotron">
-                <h1 class="display-4">[ABONNE]</h1>   
-                <h2 class="display-5">JUDD bag_white</h2>
-                <p class="price">회원가 : \156,400 </p>
-                <p class="lead">세가지 형태로 변주가 가능한 3-way style</p>
-                <p class="lead">100% 소가죽 제작, 레몬 3개보다 가벼운 무게 약 400g! </p>
-            
+            <img id="shop_abonne" src="https://img.hago.kr/data/goods/19/05/21/1000030385/1000030385_detail_081.jpg"
+                alt="ABONNE">
+            <h2>[ABONNE] JUDD bag_white <span class="badge badge-light">156,400 / 개</span></h2>
+            <p>세가지 형태로 변주가 가능한 3-way style </p>
+            <p>100% 소가죽 제작, 레몬 3개보다 가벼운 무게 약 400g! </p>
 
-            </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주문자 이름</span>
                 </div>
-                <input id="username" type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+                <input id="orderName" type="text" class="form-control" aria-label="Username"
+                    aria-describedby="basic-addon1">
             </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">수량</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
-                    <option selected>--수량을 선택하세요.--</option>
+                <select class="custom-select" id="orderCount">
+                    <option value="0" selected>--수량을 선택하세요.--</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -80,15 +106,20 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">주소</span>
                 </div>
-                <input id="address" type="text" class="form-control" aria-label="Address" aria-describedby="basic-addon1">
+                <input id="orderAddress" type="text" class="form-control" aria-label="Address"
+                    aria-describedby="basic-addon1">
             </div>
+
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">전화번호</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Number" aria-describedby="basic-addon1">
+                <input type="text" id="orderNumber" class="form-control" aria-label="Number" aria-describedby="basic-addon1">
             </div>
-            <a onClick="orderCheck()" class="btn btn-primary btn" href="#" role="button">주문하기</a>
+            <p id="order">
+                <a onClick="order()" class="btn btn-primary btn" href="#" role="button">주문하기</a>
+            </p>
+
 
         </div>
 

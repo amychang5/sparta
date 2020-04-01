@@ -1,6 +1,7 @@
 * {
   
-    font-family: 'Nanum Myeongjo', serif;
+    /* font-family: 'Nanum Myeongjo', sans-serif; */
+    font-family: 'Sunflower', sans-serif;
     
 }
 
@@ -13,22 +14,17 @@
     align-items: center;
 
 }
+
+
 .order-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-.jumbotron {
+    text-align: center;
     background-color:white;
-    height: 350px;
+    height: 1200px;
 
 }
-.price {
-    font-weight: bold;
-    color: blue;
 
+#order {
+    text-align: center;
 }
 
 
