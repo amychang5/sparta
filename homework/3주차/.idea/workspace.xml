@@ -26,6 +26,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../python_practice" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -70,6 +71,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="690" y="201" key="FileChooserDialogImpl" timestamp="1585830947947">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="201" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1585830947947" />
     <state width="1893" height="268" key="GridCell.Tab.0.bottom" timestamp="1585745846094">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
