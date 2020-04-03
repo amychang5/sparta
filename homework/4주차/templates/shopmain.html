@@ -51,7 +51,7 @@
                         make_card(orders[i]['orderName'], orders[i]['orderCount'], orders[i]['orderAddress'], orders[i]['orderNumber']);
                     }
                 } else {
-                    alert('주문이 정상적으로 접수되지 않았습니다');
+                    alert('접수된 주문이 없습니다.');
                 }
             }
         })
@@ -68,7 +68,7 @@
     }
 
 
-    function order() {
+    function write_order() {
         let orderName = $('#orderName');
         let orderCount = $('#orderCount');
         let orderAddress = $('#orderAddress');
@@ -91,20 +91,24 @@
             //orderNumber.val() = '';
             orderNumber.focus();
             return;
-        } else {
-            //alert('주문완료!');
-            $.ajax({
-                type: "POST",
-                url: "/orders",
-                data: { orderName_give: orderName, orderCount_give: orderCount, orderAddress_give: orderAddress, orderNumber_give: orderNumber },
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        alert(response['msg']);
-                        window.location.reload();
-                    }
+        } 
+        //alert('주문완료!');
+        $.ajax({
+            type: "POST",
+            url: "/orders",
+            data: { orderName_give: orderName.val(), orderCount_give: orderCount.val(), orderAddress_give: orderAddress.val(), orderNumber_give: orderNumber.val() },
+            success: function (response) {
+                if (response['result'] == 'success') {
+                    alert(response['msg']);
+                    orderName.val('');
+                    orderCount.val('');
+                    orderAddress.val('');
+                    orderNumber.val('');
+                    window.location.reload();
                 }
-            })
-        }
+            }
+        })
+        
 
     }
 
@@ -169,13 +173,13 @@
                     aria-describedby="basic-addon1">
             </div>
             <p id="order">
-                <a onClick="order()" class="btn btn-primary btn" href="#" role="button">주문하기</a>
+                <a onClick="write_order()" class="btn btn-primary btn" href="#" role="button">주문하기</a>
             </p>
 
 
         </div>
 
-        <div class="orders">
+        <div class="orderList">
             <table class="table">
                 <thead>
                     <tr>
